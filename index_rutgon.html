@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thông tin liên hệ - Trang Demo</title>
+
+  <!-- Tailwind + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Base */
+    :root { color-scheme: dark; }
+    body{
+      font-family: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 17px; /* tăng 1 đơn vị */
+      background-image: url('IMG/bg0.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 2rem 0;
+    }
+
+    .container-wrapper{
+      background-color: transparent;
+      padding: 2rem;
+      border-radius: 1rem;
+      margin: 2rem auto;
+      max-width: 1200px;
+    }
+
+    .card{
+      backdrop-filter: blur(10px);
+      background-color: rgb(0 61 73 / 59%);
+      border-radius: 1rem;
+      transition: transform .3s ease, box-shadow .3s ease;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.2);
+      height: 100%;
+    }
+    .card:hover{ transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,.2); }
+
+    /* Khối BANK: chỉnh input + nút copy “đẹp như cũ” */
+	.profile-card-5 .card-body{
+		background: rgba(0,0,0,.5);
+		color:#fff;
+	}
+	
+	.profile-card-5 .card-body h5,	.profile-card-5 .card-body p{
+		color:#fff;
+		margin: 0 0 5px;
+	}
+	
+	.profile-card-5 .card-body h5 {
+		font-size: 115%;
+	}
+	
+	.profile-card-5 input[type="text"]{
+		font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; /* số dễ đọc */
+		font-variant-numeric: tabular-nums;
+		width:100%;
+		padding:.6rem .75rem;
+		margin-top:.5rem;
+		text-align:center;
+		background: rgba(255,255,255,.12);
+		color:#fff;
+		border:1px solid rgba(255,255,255,.25);
+		border-radius:.75rem;
+		outline: none;
+		font-size: 125%;
+	}
+	
+	/* Nút copy: đậm, full width, hover rõ */
+	.copy-button{
+		display:block;
+		width:100%;
+		margin-top:.5rem;
+		padding:.6rem 1rem;
+		background:#3b82f6;
+		color:#fff;
+		border:none;
+		border-radius:.75rem;
+		font-weight:600;
+		cursor:pointer;
+		transition: background .2s ease, transform .05s ease;
+		font-size: 80%;
+	}
+		.copy-button:hover{ background:#2563eb; }
+		.copy-button:active{ transform: translateY(1px); }
+	
+	/* Đảm bảo ảnh QR không đẩy body sát mép */
+	.profile-card-5 .card-img-block-bank{ padding:0; }
+	.profile-card-5 .card-body{ padding:1rem 1rem 1.1rem; }
+
+    /* Flat bg colors cho 2 bank */
+    .card.profile-card-5.bank-a{ background-color:#e3f2fd; }
+    .card.profile-card-5.bank-b{ background-color:#fce4ec; }
+
+    /* Dòng 2 cũ: liên hệ + liên kết */
+    .lienhe h3{ color:#fff; font-size:1.5rem; font-weight:700; }
+    .lienhe span, .lienhe a{ color:#ccc; }
+    .lienhe a:hover{ color:#fff; text-decoration:underline; }
+    .card.text-on-dark{ background: rgba(0,0,0,.5); }
+
+    /* Khối avatar mới (cột 3 hàng đầu) */
+    .profile-card-6 .avatar-wrap{
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      padding: 1.25rem 1.25rem 1.5rem;
+      text-align:center;
+      background: rgb(75 255 0 / 20%);
+      color:#fff;
+      height:100%;
+    }
+    .profile-card-6 img.avatar{
+      width:120px; height:120px; border-radius:9999px; object-fit:cover;
+      border:4px solid #fff; box-shadow:0 4px 12px rgba(0,0,0,.25);
+      margin-top:12px; margin-bottom:12px;
+    }
+    .profile-card-6 h5{ color:#fff; font-weight:700; font-size:1.3rem; margin:1rem; }
+    .profile-card-6 p{ color:#fff; opacity:.9; line-height:1.5; margin-top:.5rem; }
+	
+	i.fas.fa-copy {    margin-right: 5px;}
+  </style>
+</head>
+<body>
+  <div class="container-wrapper">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Hàng 1: Bank 1 -->
+      <div class="col-span-1">
+        <div class="card profile-card-5 bank-a">
+          <div class="card-img-block-bank">
+            <img src="IMG/bank1.jpg" alt="Bank QR 1"
+                 class="mx-auto"
+                 onerror="this.onerror=null;this.src='https://placehold.co/200x200/4a90e2/ffffff?text=Bank+1'">
+          </div>
+          <div class="card-body p-4 pt-0 text-center">
+            <h5 class="mt-4">Nguyễn Văn AAAAAAAA</h5>
+            <p class="text-sm">Ngân hàng A</p>
+            <input type="text" value="0000000001" readonly class="w-full">
+            <button class="copy-button w-full mt-2" onclick="copyText('0000000001')"><i class="fas fa-copy"></i>   COPY </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hàng 1: Bank 2 -->
+      <div class="col-span-1">
+        <div class="card profile-card-5 bank-b">
+          <div class="card-img-block-bank">
+            <img src="IMG/bank2.jpg" alt="Bank QR 2"
+                 class="mx-auto"
+                 onerror="this.onerror=null;this.src='https://placehold.co/200x200/4a90e2/ffffff?text=Bank+2'">
+          </div>
+          <div class="card-body p-4 pt-0 text-center">
+            <h5 class="mt-4">Nguyễn Văn AAAAAAAA</h5>
+            <p class="text-sm">Ngân hàng B</p>
+            <input type="text" value="0000000002" readonly class="w-full">
+            <button class="copy-button w-full mt-2" onclick="copyText('0000000002')"><i class="fas fa-copy"></i>   COPY </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hàng 1: Cột 3 mới (avatar + tiêu đề + mô tả ngắn) -->
+      <div class="col-span-1">
+        <div class="card profile-card-6">
+          <div class="avatar-wrap">
+            <img src="IMG/avt1.png"
+                 alt="Avatar"
+                 class="avatar"
+                 onerror="this.onerror=null;this.src='https://placehold.co/160x160/f9fafb/3b82f6?text=AVT'">
+            <h5>Nguyễn Văn AAAAAAAA</h5>
+            <p>Đây là phần thông tin cá nhân mô tả về bản thân, công việc, gì gì đó....</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hàng 2: Liên hệ (giữ nguyên dòng 3 cũ) -->
+      <div class="col-span-1 md:col-span-2 lg:col-span-2">
+        <div class="card text-on-dark p-6 h-full flex flex-col justify-center">
+          <div class="lienhe">
+            <h3>Nguyễn Văn AAAAAAAA</h3>
+            <div class="mt-4 space-y-2">
+              <span><b>🛖 Địa chỉ:</b></span>&nbsp;<a href="#">Số 999, Đường 9, Phường 9, tp.Hồ Chí Minh</a><br>
+              <span><b>📞 SĐT / Zalo:</b></span>&nbsp;<a href="tel:0999999999">0999 999 999</a><br>
+              <span><b>✉️ Email cá nhân:</b></span>&nbsp;<a href="mailto:demo@gmail.com">demo@gmail.com</a><br>
+              <span><b>✉️ Email công việc:</b></span>&nbsp;<a href="mailto:work@gmail.com">work@gmail.com</a><br>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hàng 2: Liên kết (giữ nguyên) -->
+      <div class="col-span-1 md:col-span-2 lg:col-span-1">
+        <div class="card text-on-dark p-6 h-full flex flex-col justify-center">
+          <div class="lienhe">
+            <h3>Liên kết</h3>
+            <div class="mt-4 space-y-2">
+              <span><b>📀 ️Discord:</b></span>&nbsp;<a href="#">//discord.com/demolink</a><br>
+              <span><b>💻 Cộng đồng:</b></span>&nbsp;<a href="#">//demolink</a><br>
+              <span><b>📋 Thông tin:</b></span>&nbsp;<a href="https://fb.com/nzncn">//fb.com/nzncn</a><br>
+              <span><b>▶️ Youtube:</b></span>&nbsp;<a href="#">//youtube.com/demo</a><br>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function copyText(textToCopy) {
+      const tempInput = document.createElement('input');
+      tempInput.value = textToCopy;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      try { document.execCommand('copy'); alert('Đã copy: ' + textToCopy); }
+      catch (err) { console.error('Không thể copy', err); }
+      document.body.removeChild(tempInput);
+    }
+  </script>
+</body>
+</html>
