@@ -1,231 +1,159 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thông tin liên hệ - Trang Demo</title>
-
-  <!-- Tailwind + Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nguyễn Vũ Lam — Thiết bị vật tư ngành nước | Cà Mau</title>
+  <meta name="description" content="Cung cấp sỉ lẻ thiết bị vật tư ống nước, đồ nhựa; tư vấn thiết kế công trình, nhà dân tại Cà Mau." />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Base */
-    :root { color-scheme: dark; }
-    body{
-      font-family: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      font-size: 17px; /* tăng 1 đơn vị */
-      background-image: url('IMG/bg0.jpg');
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 2rem 0;
+    :root{
+      --bg:#0f172a;        /* slate-900 */
+      --card:#111827;      /* gray-900 */
+      --muted:#94a3b8;     /* slate-400 */
+      --text:#e5e7eb;      /* gray-200 */
+      --primary:#22c55e;   /* green-500 */
+      --primary-2:#0ea5e9; /* sky-500 */
+      --ring:#22c55e40;
     }
-
-    .container-wrapper{
-      background-color: transparent;
-      padding: 2rem;
-      border-radius: 1rem;
-      margin: 2rem auto;
-      max-width: 1200px;
+    *{box-sizing:border-box}
+    html,body{margin:0;background:linear-gradient(180deg,#0b1226,#0f172a 30%,#0b1226);color:var(--text);font-family:"Quicksand",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:980px;margin:auto;padding:24px}
+    header{display:grid;gap:12px;justify-items:center;text-align:center;margin:14px 0 18px}
+    header h1{margin:2px 0 0;font-size:28px;line-height:1.15}
+    .lead{color:var(--muted);font-size:15px}
+    .card{background:var(--card);border:1px solid #1f2937;border-radius:16px;padding:18px 18px}
+    .grid{display:grid;gap:12px}
+    @media(min-width:720px){.grid{grid-template-columns:1.2fr .8fr}}
+    .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:12px 14px;border-radius:12px;border:1px solid #1f2937;
+      background:#0b1226;cursor:pointer;line-height:1;font-weight:700;
+      transition:.15s transform ease,.15s box-shadow ease,.15s background ease;
+      text-decoration:none; user-select:none;
     }
-
-    .card{
-      backdrop-filter: blur(10px);
-      background-color: rgb(0 61 73 / 59%);
-      border-radius: 1rem;
-      transition: transform .3s ease, box-shadow .3s ease;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.2);
-      height: 100%;
-    }
-    .card:hover{ transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,.2); }
-
-    /* Khối BANK: chỉnh input + nút copy “đẹp như cũ” */
-	.profile-card-5 .card-body{
-		background: rgba(0,0,0,.5);
-		color:#fff;
-	}
-	
-	.profile-card-5 .card-body h5,	.profile-card-5 .card-body p{
-		color:#fff;
-		margin: 0 0 5px;
-	}
-	
-	.profile-card-5 .card-body h5 {
-		font-size: 115%;
-	}
-	
-	.profile-card-5 input[type="text"]{
-		font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; /* số dễ đọc */
-		font-variant-numeric: tabular-nums;
-		width:100%;
-		padding:.6rem .75rem;
-		margin-top:.5rem;
-		text-align:center;
-		background: rgba(255,255,255,.12);
-		color:#fff;
-		border:1px solid rgba(255,255,255,.25);
-		border-radius:.75rem;
-		outline: none;
-		font-size: 125%;
-	}
-	
-	/* Nút copy: đậm, full width, hover rõ */
-	.copy-button{
-		display:block;
-		width:100%;
-		margin-top:.5rem;
-		padding:.6rem 1rem;
-		background:#3b82f6;
-		color:#fff;
-		border:none;
-		border-radius:.75rem;
-		font-weight:600;
-		cursor:pointer;
-		transition: background .2s ease, transform .05s ease;
-		font-size: 80%;
-	}
-		.copy-button:hover{ background:#2563eb; }
-		.copy-button:active{ transform: translateY(1px); }
-	
-	/* Đảm bảo ảnh QR không đẩy body sát mép */
-	.profile-card-5 .card-img-block-bank{ padding:0; }
-	.profile-card-5 .card-body{ padding:1rem 1rem 1.1rem; }
-
-    /* Flat bg colors cho 2 bank */
-    .card.profile-card-5.bank-a{ background-color:#e3f2fd; }
-    .card.profile-card-5.bank-b{ background-color:#fce4ec; }
-
-    /* Dòng 2 cũ: liên hệ + liên kết */
-    .lienhe h3{ color:#fff; font-size:1.5rem; font-weight:700; }
-    .lienhe span, .lienhe a{ color:#ccc; }
-    .lienhe a:hover{ color:#fff; text-decoration:underline; }
-    .card.text-on-dark{ background: rgba(0,0,0,.5); }
-
-    /* Khối avatar mới (cột 3 hàng đầu) */
-    .profile-card-6 .avatar-wrap{
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      padding: 1.25rem 1.25rem 1.5rem;
-      text-align:center;
-      background: rgb(75 255 0 / 20%);
-      color:#fff;
-      height:100%;
-    }
-    .profile-card-6 img.avatar{
-      width:120px; height:120px; border-radius:9999px; object-fit:cover;
-      border:4px solid #fff; box-shadow:0 4px 12px rgba(0,0,0,.25);
-      margin-top:12px; margin-bottom:12px;
-    }
-    .profile-card-6 h5{ color:#fff; font-weight:700; font-size:1.3rem; margin:1rem; }
-    .profile-card-6 p{ color:#fff; opacity:.9; line-height:1.5; margin-top:.5rem; }
-	
-	i.fas.fa-copy {    margin-right: 5px;}
+    .btn:focus{outline:2px solid var(--ring);outline-offset:2px}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px #00000055}
+    .btn.primary{background:var(--primary);color:#07210f;border-color:#16a34a}
+    .btn.sky{background:var(--primary-2);color:#031a24;border-color:#0284c7}
+    .btn.ghost{background:#0f172a}
+    .kvs{display:grid;gap:8px;margin:8px 0 0}
+    .kvs div{display:flex;gap:8px;align-items:flex-start}
+    .muted{color:var(--muted)}
+    .section{margin-top:18px}
+    .section h2{font-size:18px;margin:0 0 8px}
+    ul{margin:8px 0 0 18px;padding:0}
+    li{margin:6px 0}
+    .map{margin-top:12px;border:1px solid #1f2937;border-radius:16px;overflow:hidden;min-height:300px}
+    footer{margin:18px 0 8px;text-align:center;color:var(--muted);font-size:13px}
+    .chip{display:inline-block;padding:6px 10px;border-radius:999px;background:#0f172a;border:1px solid #1f2937;font-size:12px;color:var(--muted)}
+    .stack{display:grid;gap:8px}
+    .sr{position:absolute;left:-9999px}
+    .two{display:grid;gap:12px}
+    @media(min-width:720px){.two{grid-template-columns:1fr 1fr}}
+    code{background:#0f172a;border:1px solid #1f2937;padding:2px 6px;border-radius:6px}
   </style>
 </head>
 <body>
-  <div class="container-wrapper">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div class="wrap">
+    <header>
+      <div class="chip">Thiết bị vật tư ngành nước • Cà Mau</div>
+      <h1>Nguyễn Vũ Lam</h1>
+      <div class="lead">SĐT: <strong>0818&nbsp;660&nbsp;266</strong> • Địa chỉ: <strong>Số 89, Huỳnh Thúc Kháng, Khóm 7, Phường 7, TP Cà Mau</strong></div>
+      <nav class="cta" aria-label="Hành động nhanh">
+        <a class="btn primary" href="tel:+84818660266" aria-label="Gọi ngay">📞 Gọi ngay</a>
+        <a class="btn sky" href="https://zalo.me/0818660266" target="_blank" rel="noopener" aria-label="Liên lạc Zalo">💬 Zalo</a>
+        <a class="btn ghost" href="#" target="_blank" rel="noopener" aria-label="Trang Shopee">🛒 Shopee</a>
+        <a class="btn ghost" href="#ban-do" aria-label="Xem bản đồ">🗺️ Xem bản đồ</a>
+        <a class="btn ghost" href="mailto:contact@nguyenvulam.vn" aria-label="Gửi mail">✉️ Gửi mail</a>
+        <a class="btn ghost" href="mailto:contact@nguyenvulam.vn?subject=Y%C3%AAu%20c%E1%BA%A7u%20b%C3%A1o%20gi%C3%A1&body=Ch%C3%A0o%20anh%20Lam%2C%0AEm%20c%E1%BA%A7n%20b%C3%A1o%20gi%C3%A1%20cho%3A%0A-%20S%E1%BA%A3n%20ph%E1%BA%A9m%3A%20%0A-%20S%E1%BB%91%20l%C6%B0%E1%BB%A3ng%3A%20%0A-%20%C4%90%E1%BB%8Ba%20%C4%91i%E1%BB%83m%20giao%20h%C3%A0ng%3A%20%0A%0ATh%C3%B4ng%20tin%20li%C3%AAn%20h%E1%BB%87%3A%20%0AT%C3%AAn%3A%20%0AS%E1%BB%91%20%C4%91i%E1%BB%87n%20tho%E1%BA%A1i%3A%20" aria-label="Nhận báo giá">📄 Nhận báo giá</a>
+      </nav>
+    </header>
 
-      <!-- Hàng 1: Bank 1 -->
-      <div class="col-span-1">
-        <div class="card profile-card-5 bank-a">
-          <div class="card-img-block-bank">
-            <img src="IMG/bank1.jpg" alt="Bank QR 1"
-                 class="mx-auto"
-                 onerror="this.onerror=null;this.src='https://placehold.co/200x200/4a90e2/ffffff?text=Bank+1'">
+    <main class="grid">
+      <section class="card">
+        <h2>Dịch vụ</h2>
+        <p class="muted">Chuyên cung cấp sỉ lẻ thiết bị vật tư ống nước, đồ nhựa tổng hợp.</p>
+        <div class="two">
+          <div class="stack">
+            <h3>Phân phối &amp; vật tư</h3>
+            <ul>
+              <li>Các phụ kiện ngành nước: ống, co, tê, van, đồng hồ…</li>
+              <li>Hàng chính hãng từ các thương hiệu nhựa uy tín tại Việt Nam.</li>
+              <li>Giá tốt cho đại lý, công trình; xuất hoá đơn theo yêu cầu.</li>
+            </ul>
           </div>
-          <div class="card-body p-4 pt-0 text-center">
-            <h5 class="mt-4">Nguyễn Văn AAAAAAAA</h5>
-            <p class="text-sm">Ngân hàng A</p>
-            <input type="text" value="0000000001" readonly class="w-full">
-            <button class="copy-button w-full mt-2" onclick="copyText('0000000001')"><i class="fas fa-copy"></i>   COPY </button>
+          <div class="stack">
+            <h3>Tư vấn &amp; thi công</h3>
+            <ul>
+              <li>Tư vấn, thiết kế hệ thống cấp thoát nước cho nhà dân, công trình.</li>
+              <li>Khảo sát thực tế, lên phương án, dự toán vật tư minh bạch.</li>
+              <li>Hỗ trợ kỹ thuật trong suốt quá trình lắp đặt và vận hành.</li>
+            </ul>
           </div>
         </div>
-      </div>
 
-      <!-- Hàng 1: Bank 2 -->
-      <div class="col-span-1">
-        <div class="card profile-card-5 bank-b">
-          <div class="card-img-block-bank">
-            <img src="IMG/bank2.jpg" alt="Bank QR 2"
-                 class="mx-auto"
-                 onerror="this.onerror=null;this.src='https://placehold.co/200x200/4a90e2/ffffff?text=Bank+2'">
-          </div>
-          <div class="card-body p-4 pt-0 text-center">
-            <h5 class="mt-4">Nguyễn Văn AAAAAAAA</h5>
-            <p class="text-sm">Ngân hàng B</p>
-            <input type="text" value="0000000002" readonly class="w-full">
-            <button class="copy-button w-full mt-2" onclick="copyText('0000000002')"><i class="fas fa-copy"></i>   COPY </button>
+        <div class="section">
+          <h2>Liên hệ</h2>
+          <div class="kvs">
+            <div><strong>Điện thoại:</strong> <a href="tel:+84818660266">0818&nbsp;660&nbsp;266</a></div>
+            <div><strong>Zalo:</strong> <a href="https://zalo.me/0818660266" target="_blank" rel="noopener">zalo.me/0818660266</a></div>
+            <div><strong>Email:</strong> <a href="mailto:contact@nguyenvulam.vn">contact@nguyenvulam.vn</a></div>
+            <div><strong>Địa chỉ:</strong> Số 89, Huỳnh Thúc Kháng, Khóm 7, Phường 7, TP Cà Mau</div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Hàng 1: Cột 3 mới (avatar + tiêu đề + mô tả ngắn) -->
-      <div class="col-span-1">
-        <div class="card profile-card-6">
-          <div class="avatar-wrap">
-            <img src="IMG/avt1.png"
-                 alt="Avatar"
-                 class="avatar"
-                 onerror="this.onerror=null;this.src='https://placehold.co/160x160/f9fafb/3b82f6?text=AVT'">
-            <h5>Nguyễn Văn AAAAAAAA</h5>
-            <p>Đây là phần thông tin cá nhân mô tả về bản thân, công việc, gì gì đó....</p>
-          </div>
+      <aside class="card" id="ban-do">
+        <h2>Bản đồ</h2>
+        <p class="muted">Nhấn “Xem bản đồ lớn” để mở Google Maps và chỉ đường.</p>
+        <div class="map" role="region" aria-label="Bản đồ Google">
+          <iframe
+            title="Vị trí cửa hàng"
+            width="100%" height="360" style="border:0" loading="lazy" allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=S%E1%BB%91%2089%2C%20Hu%E1%BB%B3nh%20Th%C3%BAc%20Kh%C3%A1ng%2C%20Kh%C3%B3m%207%2C%20Ph%C6%B0%E1%BB%9Dng%207%2C%20TP%20C%C3%A0%20Mau&output=embed">
+          </iframe>
         </div>
-      </div>
-
-      <!-- Hàng 2: Liên hệ (giữ nguyên dòng 3 cũ) -->
-      <div class="col-span-1 md:col-span-2 lg:col-span-2">
-        <div class="card text-on-dark p-6 h-full flex flex-col justify-center">
-          <div class="lienhe">
-            <h3>Nguyễn Văn AAAAAAAA</h3>
-            <div class="mt-4 space-y-2">
-              <span><b>🛖 Địa chỉ:</b></span>&nbsp;<a href="#">Số 999, Đường 9, Phường 9, tp.Hồ Chí Minh</a><br>
-              <span><b>📞 SĐT / Zalo:</b></span>&nbsp;<a href="tel:0999999999">0999 999 999</a><br>
-              <span><b>✉️ Email cá nhân:</b></span>&nbsp;<a href="mailto:demo@gmail.com">demo@gmail.com</a><br>
-              <span><b>✉️ Email công việc:</b></span>&nbsp;<a href="mailto:work@gmail.com">work@gmail.com</a><br>
-            </div>
-          </div>
+        <div class="cta" style="margin-top:12px">
+          <a class="btn sky" target="_blank" rel="noopener"
+             href="https://www.google.com/maps/search/?api=1&query=S%E1%BB%91%2089%2C%20Hu%E1%BB%B3nh%20Th%C3%BAc%20Kh%C3%A1ng%2C%20Kh%C3%B3m%207%2C%20Ph%C6%B0%E1%BB%9Dng%207%2C%20TP%20C%C3%A0%20Mau">🗺️ Xem bản đồ lớn</a>
         </div>
-      </div>
+      </aside>
+    </main>
 
-      <!-- Hàng 2: Liên kết (giữ nguyên) -->
-      <div class="col-span-1 md:col-span-2 lg:col-span-1">
-        <div class="card text-on-dark p-6 h-full flex flex-col justify-center">
-          <div class="lienhe">
-            <h3>Liên kết</h3>
-            <div class="mt-4 space-y-2">
-              <span><b>📀 ️Discord:</b></span>&nbsp;<a href="#">//discord.com/demolink</a><br>
-              <span><b>💻 Cộng đồng:</b></span>&nbsp;<a href="#">//demolink</a><br>
-              <span><b>📋 Thông tin:</b></span>&nbsp;<a href="https://fb.com/nzncn">//fb.com/nzncn</a><br>
-              <span><b>▶️ Youtube:</b></span>&nbsp;<a href="#">//youtube.com/demo</a><br>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <footer>
+      © <span id="y"></span> Nguyễn Vũ Lam. Tất cả quyền được bảo lưu.
+      <!-- Thay link Shopee và email ở trên cho đúng thực tế -->
+    </footer>
   </div>
 
   <script>
-    function copyText(textToCopy) {
-      const tempInput = document.createElement('input');
-      tempInput.value = textToCopy;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      try { document.execCommand('copy'); alert('Đã copy: ' + textToCopy); }
-      catch (err) { console.error('Không thể copy', err); }
-      document.body.removeChild(tempInput);
-    }
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"Nguyễn Vũ Lam",
+    "telephone":"+84 818 660 266",
+    "email":"contact@nguyenvulam.vn",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"Số 89, Huỳnh Thúc Kháng, Khóm 7, Phường 7",
+      "addressLocality":"Cà Mau",
+      "addressCountry":"VN"
+    },
+    "areaServed":"Viet Nam",
+    "sameAs":[
+      "https://zalo.me/0818660266",
+      "#"
+    ]
+  }
   </script>
 </body>
 </html>
